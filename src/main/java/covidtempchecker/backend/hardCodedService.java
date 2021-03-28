@@ -16,6 +16,8 @@ public class hardCodedService {
 	static {
 		temperatures.add(new Signin(keyCounter++,new User("John Allen",1234567,"Engineering"),69.0,new Date()));
 		temperatures.add(new Signin(keyCounter++,new User("Jade Allen",987654,"HR"),100.0,new Date()));
+		temperatures.add(new Signin(keyCounter++,new User("Daithi Dunne",144231,"Mechanical Department"),43.0,new Date()));
+		temperatures.add(new Signin(keyCounter++,new User("Lizzie Dunne",123412,"Education"),23.0,new Date()));
 	}
 	
 	public  Signin save(Signin signin, int key){
