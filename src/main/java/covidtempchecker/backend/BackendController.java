@@ -15,7 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000") // Used to ensure that frontend can perform REST Calls from port 4200
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true", allowedHeaders = "*") // Used to ensure that frontend can perform REST Calls from port 4200
 public class BackendController{
 	
 	@Autowired
