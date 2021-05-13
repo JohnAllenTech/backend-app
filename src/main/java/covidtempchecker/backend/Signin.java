@@ -9,13 +9,20 @@ public class Signin {
 	Date currentDate;
 	
 	public Signin() {
+		this.currentDate = new Date();
 	}
 	
-	public Signin(int key,User user, double temperature, Date currentDate) {
+	public Signin(int key,User user, double temperature) {
 		this.key = key;
 		this.user = user;
 		this.temperature = temperature;
-		this.currentDate = currentDate;
+		this.currentDate = new Date();
+	}
+
+	public Signin(User user, double temperature) {
+		this.user = user;
+		this.temperature = temperature;
+		this.currentDate = new Date();
 	}
 
 	public long getKey() {

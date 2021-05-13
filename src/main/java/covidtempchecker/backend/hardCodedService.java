@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 
@@ -14,10 +16,10 @@ public class hardCodedService {
 	private static int keyCounter=1;
 	
 	static {
-		temperatures.add(new Signin(keyCounter++,new User("John Allen",1234567,"Engineering"),69.0,new Date()));
-		temperatures.add(new Signin(keyCounter++,new User("Jade Allen",987654,"HR"),100.0,new Date()));
-		temperatures.add(new Signin(keyCounter++,new User("Daithi Dunne",144231,"Mechanical Department"),43.0,new Date()));
-		temperatures.add(new Signin(keyCounter++,new User("Lizzie Dunne",123412,"Education"),23.0,new Date()));
+		temperatures.add(new Signin(keyCounter++,new User("John Allen",1234567,"Engineering"),13.0));
+		temperatures.add(new Signin(keyCounter++,new User("Jade Allen",987654,"HR"),20.0));
+		temperatures.add(new Signin(keyCounter++,new User("Daithi Dunne",144231,"Mechanical Department"),43.0));
+		temperatures.add(new Signin(keyCounter++,new User("Lizzie Dunne",123412,"Education"),18.0));
 	}
 	
 	public  Signin save(Signin signin, int key){
@@ -30,17 +32,23 @@ public class hardCodedService {
 			signin.setKey(key); // found you little bug
 			temperatures.add(signin);
 		}
-
-//		for (Signin s: temperatures) {
-//			System.out.println(s.toString());
-//		}
-//		System.out.println();
-		
 		return signin;
 	}
 	
 	public List<Signin> getAll(){
 		return temperatures;
+	}
+
+	public JSONArray getAllForGraph(){
+		JSONArray temperatureArray = new JSONArray();
+
+		for (Signin elem: temperatures) {
+			temperatureArray.put(new JSONObject().put("x",elem.key).put("y",elem.temperature));
+		}
+		System.out.println(temperatureArray.toString());
+
+
+		return temperatureArray;
 	}
 
 	public Signin getBykey(int key) {

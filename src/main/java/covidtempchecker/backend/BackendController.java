@@ -3,6 +3,7 @@ package covidtempchecker.backend;
 import java.net.URI;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,11 @@ public class BackendController{
 	public List<Signin> getAllSignins(){
 		return temperatureService.getAll();
 	}
+
+	@GetMapping(path= "/graph")
+	public String getAllForGraph(){
+		return temperatureService.getAllForGraph().toString();
+	}
 	
 	@GetMapping(path= "/signins/{key}")
 	public Signin getAllSignins(@PathVariable int key){
@@ -43,6 +49,7 @@ public class BackendController{
 	
 	@PostMapping("/signins/-1")
 	public ResponseEntity<Void> createSignin(@RequestBody Signin signin){
+		System.out.println(signin);
 		Signin createdSignin = temperatureService.save(signin,-1);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{key}").buildAndExpand(createdSignin.getKey()).toUri();
